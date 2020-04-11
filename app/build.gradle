@@ -40,4 +40,28 @@ dependencies {
     //Butter Knife
     implementation 'com.jakewharton:butterknife:10.2.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.1'
+
+    //Lottie
+    implementation('com.airbnb.android:lottie:2.7.0') {
+        exclude group: 'com.android.support', module: 'support-v7'
+        exclude group: 'com.android.support', module: 'support-v4'
+        exclude group: 'com.android.support', module: 'design'
+        exclude group: 'com.android.support', module: 'recyclerview'
+        exclude group: 'com.android.support', module: 'transition'
+    }
+
+    //AppCrash
+    implementation 'cat.ereza:customactivityoncrash:2.2.0'
+
+    //Spot Dialog
+    implementation 'com.github.d-max:spots-dialog:0.7@aar'
+
+    //Fresco
+    implementation 'com.facebook.fresco:fresco:2.0.0'
+
+    // Material Dialog Library
+    implementation 'com.shreyaspatil:MaterialDialog:2.0'
+
+    //Calligraphy
+    implementation 'uk.co.chrisjenx:calligraphy:2.3.0'
 }
