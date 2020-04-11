@@ -1,0 +1,2 @@
+rootProject.name='Kicky Tailor'
+include ':app'
