@@ -1,5 +1,6 @@
 package com.ekattorit.kickytailor.activities.dashboard;
 
+import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.Menu;
@@ -110,7 +111,7 @@ public class MainDashboardActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
-            finish();
+            startActivity(new Intent(MainDashboardActivity.this,ShoppingCartActivity.class));
         } else {
             Toast.makeText(getApplicationContext(), item.getTitle(), Toast.LENGTH_SHORT).show();
         }
