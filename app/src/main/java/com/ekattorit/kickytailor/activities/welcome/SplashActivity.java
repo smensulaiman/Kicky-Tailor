@@ -12,6 +12,7 @@ import android.view.WindowManager;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.ekattorit.kickytailor.R;
+import com.ekattorit.kickytailor.activities.dashboard.MainDashboardActivity;
 import com.ekattorit.kickytailor.utils.UserSession;
 
 public class SplashActivity extends AppCompatActivity {
@@ -38,7 +39,7 @@ public class SplashActivity extends AppCompatActivity {
                     startActivity(new Intent(SplashActivity.this,WelcomeActivity.class));
                     finish();
                 }else {
-                    startActivity(new Intent(SplashActivity.this,LoginActivity.class));
+                    startActivity(new Intent(SplashActivity.this, MainDashboardActivity.class));
                     finish();
                 }
             }

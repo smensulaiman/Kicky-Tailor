@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.ekattorit.kickytailor">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
@@ -12,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup">
-
+        <activity android:name=".activities.dashboard.ShoppingCartActivity"></activity>
         <activity
             android:name=".activities.dashboard.ProductDetalisActivity"
             android:screenOrientation="portrait"
