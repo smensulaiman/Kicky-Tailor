@@ -66,4 +66,10 @@ dependencies {
 
     //Calligraphy
     implementation 'uk.co.chrisjenx:calligraphy:2.3.0'
+
+    //Ken Burns View
+    implementation 'com.flaviofaria:kenburnsview:1.0.7'
+
+    //Circle Indicator
+    implementation 'me.relex:circleindicator:2.1.4'
 }

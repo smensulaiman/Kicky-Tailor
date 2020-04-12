@@ -26,4 +26,7 @@
     <dimen name="spacing_xxxlarge">55dp</dimen>
     <dimen name="appbar_padding_top">8dp</dimen>
 
+
+    <dimen name="circle_indigator">48dp</dimen>
+
 </resources>

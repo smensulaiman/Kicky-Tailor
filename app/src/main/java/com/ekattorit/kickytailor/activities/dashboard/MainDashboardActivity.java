@@ -11,25 +11,88 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.widget.NestedScrollView;
+import androidx.viewpager.widget.ViewPager;
 
 import com.ekattorit.kickytailor.R;
+import com.ekattorit.kickytailor.adapters.ImageSliderAdapter;
+import com.ekattorit.kickytailor.adapters.ImageSliderAdapterListener;
 import com.ekattorit.kickytailor.utils.Tools;
 import com.ekattorit.kickytailor.utils.ViewAnimation;
 import com.google.android.material.tabs.TabLayout;
 
+import java.util.ArrayList;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import me.relex.circleindicator.CircleIndicator;
+
 public class MainDashboardActivity extends AppCompatActivity {
+
+    @BindView(R.id.viewpagerSlider)
+    ViewPager viewpagerSlider;
+    @BindView(R.id.dotSlider)
+    CircleIndicator dotSlider;
 
     private TabLayout tab_layout;
     private ActionBar actionBar;
     private NestedScrollView nested_scroll_view;
+    private ImageSliderAdapter imageSliderAdapter;
+
+    private static int currentPage = 0;
+    private static int NUM_PAGES = 0;
+    private static final Integer[] IMAGES = {R.drawable.background, R.drawable.img_plant_1, R.drawable.img_plant_2, R.drawable.img_plant_3};
+    private ArrayList<Integer> ImagesArray = new ArrayList<Integer>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_dashboard);
+        ButterKnife.bind(this);
 
         initToolbar();
         initComponent();
+        initSlider();
+    }
+
+    private void initSlider() {
+        for (int i = 0; i < IMAGES.length; i++) {
+            ImagesArray.add(IMAGES[i]);
+        }
+
+        NUM_PAGES = IMAGES.length;
+
+        imageSliderAdapter = new ImageSliderAdapter(MainDashboardActivity.this, ImagesArray);
+        viewpagerSlider.setAdapter(imageSliderAdapter);
+        imageSliderAdapter.setImageSliderAdapterListener(new ImageSliderAdapterListener() {
+            @Override
+            public void changeImage() {
+                if (currentPage > NUM_PAGES) {
+                    currentPage = 0;
+                }
+                viewpagerSlider.setCurrentItem(currentPage++, true);
+            }
+        });
+
+        dotSlider.setViewPager(viewpagerSlider);
+        dotSlider.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+
+            @Override
+            public void onPageSelected(int position) {
+                currentPage = position;
+
+            }
+
+            @Override
+            public void onPageScrolled(int pos, float arg1, int arg2) {
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int pos) {
+
+            }
+        });
+
     }
 
     private void initToolbar() {
@@ -111,7 +174,7 @@ public class MainDashboardActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
-            startActivity(new Intent(MainDashboardActivity.this,ShoppingCartActivity.class));
+            startActivity(new Intent(MainDashboardActivity.this, ShoppingCartActivity.class));
         } else {
             Toast.makeText(getApplicationContext(), item.getTitle(), Toast.LENGTH_SHORT).show();
         }
