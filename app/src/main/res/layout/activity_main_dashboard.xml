@@ -11,8 +11,15 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <include
-            layout="@layout/layout_slider"/>
+        <LinearLayout
+            android:id="@+id/layoutSlider"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <include
+                layout="@layout/layout_slider"/>
+
+        </LinearLayout>
 
         <androidx.core.widget.NestedScrollView
             android:id="@+id/nested_scroll_view"

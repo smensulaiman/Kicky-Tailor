@@ -5,6 +5,8 @@ import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
@@ -35,6 +37,8 @@ public class MainDashboardActivity extends AppCompatActivity {
     ViewPager viewpagerSlider;
     @BindView(R.id.dotSlider)
     CircleIndicator dotSlider;
+    @BindView(R.id.layoutSlider)
+    LinearLayout layoutSlider;
 
     private TabLayout tab_layout;
     private ActionBar actionBar;
@@ -58,7 +62,7 @@ public class MainDashboardActivity extends AppCompatActivity {
 
     private void init() {
         fragment = new HomeFragment();
-        changeFragment(fragment,new Bundle());
+        changeFragment(fragment, new Bundle());
         initToolbar();
         initComponent();
         initSlider();
@@ -140,28 +144,33 @@ public class MainDashboardActivity extends AppCompatActivity {
                 switch (tab.getPosition()) {
                     case 0:
                         actionBar.setTitle("Home");
+                        layoutSlider.setVisibility(View.VISIBLE);
                         fragment = new HomeFragment();
-                        changeFragment(fragment,new Bundle());
+                        changeFragment(fragment, new Bundle());
                         break;
                     case 1:
                         actionBar.setTitle("Explore");
+                        layoutSlider.setVisibility(View.GONE);
                         fragment = new ProfileFragment();
-                        changeFragment(fragment,new Bundle());
+                        changeFragment(fragment, new Bundle());
                         break;
                     case 2:
                         actionBar.setTitle("Story");
+                        layoutSlider.setVisibility(View.GONE);
                         fragment = new HomeFragment();
-                        changeFragment(fragment,new Bundle());
+                        changeFragment(fragment, new Bundle());
                         break;
                     case 3:
                         actionBar.setTitle("Activity");
+                        layoutSlider.setVisibility(View.GONE);
                         fragment = new ProfileFragment();
-                        changeFragment(fragment,new Bundle());
+                        changeFragment(fragment, new Bundle());
                         break;
                     case 4:
                         actionBar.setTitle("Profile");
+                        layoutSlider.setVisibility(View.GONE);
                         fragment = new HomeFragment();
-                        changeFragment(fragment,new Bundle());
+                        changeFragment(fragment, new Bundle());
                         break;
                 }
 
@@ -183,11 +192,11 @@ public class MainDashboardActivity extends AppCompatActivity {
         Tools.setSystemBarLight(this);
     }
 
-    public void changeFragment(Fragment fragment, Bundle bundle){
+    public void changeFragment(Fragment fragment, Bundle bundle) {
         fragment.setArguments(bundle);
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.frameContainer,fragment)
+                .replace(R.id.frameContainer, fragment)
                 .commit();
     }
 
