@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="@dimen/spacing_medium"
-        android:visibility="visible"
-        android:weightSum="2">
+        android:visibility="visible">
 
         <androidx.cardview.widget.CardView
             android:layout_width="0dp"
@@ -22,14 +20,15 @@
 
             <LinearLayout
                 android:id="@+id/layoutProduct"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
                 <ImageView
                     android:id="@+id/imgProduct"
-                    android:layout_width="match_parent"
+                    android:layout_width="180dp"
                     android:layout_height="180dp"
+
                     android:background="@color/grey_40"
                     android:scaleType="centerCrop"
                     android:src="@drawable/img_plant_1"/>
@@ -39,7 +38,9 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:orientation="horizontal"
-                    android:padding="@dimen/spacing_large">
+                    android:paddingTop="@dimen/spacing_medium"
+                    android:paddingLeft="@dimen/spacing_medium"
+                    android:paddingBottom="@dimen/spacing_medium">
 
                     <LinearLayout
                         android:layout_width="0dp"

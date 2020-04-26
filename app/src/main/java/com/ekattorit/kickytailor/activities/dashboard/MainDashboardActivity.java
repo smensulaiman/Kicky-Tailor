@@ -11,9 +11,12 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.widget.NestedScrollView;
+import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 import com.ekattorit.kickytailor.R;
+import com.ekattorit.kickytailor.activities.dashboard.fragments.HomeFragment;
+import com.ekattorit.kickytailor.activities.dashboard.fragments.ProfileFragment;
 import com.ekattorit.kickytailor.adapters.ImageSliderAdapter;
 import com.ekattorit.kickytailor.adapters.ImageSliderAdapterListener;
 import com.ekattorit.kickytailor.utils.Tools;
@@ -37,6 +40,7 @@ public class MainDashboardActivity extends AppCompatActivity {
     private ActionBar actionBar;
     private NestedScrollView nested_scroll_view;
     private ImageSliderAdapter imageSliderAdapter;
+    private Fragment fragment;
 
     private static int currentPage = 0;
     private static int NUM_PAGES = 0;
@@ -49,6 +53,12 @@ public class MainDashboardActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main_dashboard);
         ButterKnife.bind(this);
 
+        init();
+    }
+
+    private void init() {
+        fragment = new HomeFragment();
+        changeFragment(fragment,new Bundle());
         initToolbar();
         initComponent();
         initSlider();
@@ -130,18 +140,28 @@ public class MainDashboardActivity extends AppCompatActivity {
                 switch (tab.getPosition()) {
                     case 0:
                         actionBar.setTitle("Home");
+                        fragment = new HomeFragment();
+                        changeFragment(fragment,new Bundle());
                         break;
                     case 1:
                         actionBar.setTitle("Explore");
+                        fragment = new ProfileFragment();
+                        changeFragment(fragment,new Bundle());
                         break;
                     case 2:
                         actionBar.setTitle("Story");
+                        fragment = new HomeFragment();
+                        changeFragment(fragment,new Bundle());
                         break;
                     case 3:
                         actionBar.setTitle("Activity");
+                        fragment = new ProfileFragment();
+                        changeFragment(fragment,new Bundle());
                         break;
                     case 4:
                         actionBar.setTitle("Profile");
+                        fragment = new HomeFragment();
+                        changeFragment(fragment,new Bundle());
                         break;
                 }
 
@@ -163,6 +183,13 @@ public class MainDashboardActivity extends AppCompatActivity {
         Tools.setSystemBarLight(this);
     }
 
+    public void changeFragment(Fragment fragment, Bundle bundle){
+        fragment.setArguments(bundle);
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.frameContainer,fragment)
+                .commit();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
