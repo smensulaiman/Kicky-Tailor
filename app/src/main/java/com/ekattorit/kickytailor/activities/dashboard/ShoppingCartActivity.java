@@ -8,6 +8,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.ekattorit.kickytailor.R;
 import com.ekattorit.kickytailor.utils.Tools;
@@ -19,6 +20,10 @@ public class ShoppingCartActivity extends AppCompatActivity {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
+
+    @BindView(R.id.recyclerViewCart)
+    RecyclerView recyclerViewCart;
+
     private ActionBar actionBar;
 
     @Override
