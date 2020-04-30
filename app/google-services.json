@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "344738494571",
+    "firebase_url": "https://kicky-tailor.firebaseio.com",
+    "project_id": "kicky-tailor",
+    "storage_bucket": "kicky-tailor.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:344738494571:android:5205c70bc54a6d1990592e",
+        "android_client_info": {
+          "package_name": "com.ekattorit.kickytailor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "344738494571-nkcrg7nbl1bu1i5hoo8vgoelvntqpfdq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyChl6Ow7-aMJkA9D8MTd9B1t4uttautM1c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "344738494571-nkcrg7nbl1bu1i5hoo8vgoelvntqpfdq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

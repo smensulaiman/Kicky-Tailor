@@ -1,11 +1,11 @@
 package com.ekattorit.kickytailor.adapters;
 
 import android.content.Context;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.ekattorit.kickytailor.R;
 import com.ekattorit.kickytailor.models.ProductModel;
+import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.List;
 
@@ -47,8 +48,9 @@ public class TopRatedProductAdapter extends RecyclerView.Adapter<TopRatedProduct
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
         final ProductModel productModel = productModels.get(position);
+        Uri uri = Uri.parse(productModel.getProductImage());
 
-        holder.imgProduct.setImageResource(R.drawable.img_plant_1);
+        holder.imgProduct.setImageURI(uri);
         holder.txtTitle.setText(productModel.getProductName());
         holder.txtPrice.setText(productModel.getProductPrice());
 
@@ -68,10 +70,15 @@ public class TopRatedProductAdapter extends RecyclerView.Adapter<TopRatedProduct
         return productModels.size();
     }
 
+    public void setProductModels(List<ProductModel> productModels){
+        this.productModels = productModels;
+        notifyDataSetChanged();
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.imgProduct)
-        ImageView imgProduct;
+        SimpleDraweeView imgProduct;
         @BindView(R.id.txtTitle)
         TextView txtTitle;
         @BindView(R.id.txtPrice)

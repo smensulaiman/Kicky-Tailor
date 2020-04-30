@@ -14,7 +14,6 @@ public class CartModel implements Parcelable {
     String productStock;
     String getProductQuantity;
 
-
     public CartModel(String productId, String productName, String productDetails, String productPrice, String productImage, String productColor, String productStock, String getProductQuantity) {
         this.productId = productId;
         this.productName = productName;
@@ -25,7 +24,6 @@ public class CartModel implements Parcelable {
         this.productStock = productStock;
         this.getProductQuantity = getProductQuantity;
     }
-
 
     public String getProductId() {
         return productId;

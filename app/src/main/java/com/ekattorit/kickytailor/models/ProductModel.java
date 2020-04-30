@@ -13,6 +13,9 @@ public class ProductModel implements Parcelable {
     String productColor;
     String productStock;
 
+    public ProductModel() {
+    }
+
     public ProductModel(String productId, String productName, String productDetails, String productPrice, String productImage, String productColor, String productStock) {
         this.productId = productId;
         this.productName = productName;

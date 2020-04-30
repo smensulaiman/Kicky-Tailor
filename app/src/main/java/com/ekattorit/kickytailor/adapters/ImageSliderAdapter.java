@@ -5,24 +5,21 @@ import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import androidx.viewpager.widget.PagerAdapter;
-
 import com.ekattorit.kickytailor.R;
 import com.flaviofaria.kenburnsview.KenBurnsView;
 import com.flaviofaria.kenburnsview.Transition;
-
 import java.util.ArrayList;
 
 public class ImageSliderAdapter extends PagerAdapter {
 
-    private ArrayList<Integer> IMAGES;
+    private ArrayList<Integer> images;
     private Context context;
     private ImageSliderAdapterListener imageSliderAdapterListener;
 
     public ImageSliderAdapter(Context context,ArrayList<Integer> IMAGES) {
         this.context = context;
-        this.IMAGES=IMAGES;
+        this.images=IMAGES;
     }
 
     public void setImageSliderAdapterListener(ImageSliderAdapterListener imageSliderAdapterListener) {
@@ -36,7 +33,7 @@ public class ImageSliderAdapter extends PagerAdapter {
 
     @Override
     public int getCount() {
-        return IMAGES.size();
+        return images.size();
     }
 
     @Override
@@ -45,7 +42,7 @@ public class ImageSliderAdapter extends PagerAdapter {
 
         assert imageLayout != null;
         final KenBurnsView imageView = imageLayout.findViewById(R.id.imgSlider);
-        imageView.setImageResource(IMAGES.get(position));
+        imageView.setImageResource(images.get(position));
 
         imageView.setTransitionListener(new KenBurnsView.TransitionListener() {
             @Override
@@ -62,7 +59,6 @@ public class ImageSliderAdapter extends PagerAdapter {
         });
 
         view.addView(imageLayout, 0);
-
         return imageLayout;
     }
 

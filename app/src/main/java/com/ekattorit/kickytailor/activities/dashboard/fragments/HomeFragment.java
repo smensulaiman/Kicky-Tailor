@@ -13,6 +13,8 @@ import com.ekattorit.kickytailor.R;
 import com.ekattorit.kickytailor.adapters.NewReleaseProductAdapter;
 import com.ekattorit.kickytailor.adapters.RecommendedProductAdapter;
 import com.ekattorit.kickytailor.adapters.TopRatedProductAdapter;
+import com.ekattorit.kickytailor.database.FirebaseDatabaseManager;
+import com.ekattorit.kickytailor.database.FirebaseDatabaseManagerInterface;
 import com.ekattorit.kickytailor.models.ProductModel;
 
 import java.util.ArrayList;
@@ -42,36 +44,38 @@ public class HomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         ButterKnife.bind(this, view);
 
-        newReleaseProductAdapter = new NewReleaseProductAdapter(getContext(), getProductModel());
-        recommendedProductAdapter = new RecommendedProductAdapter(getContext(),getProductModel());
-        topRatedProductAdapter = new TopRatedProductAdapter(getContext(),getProductModel());
+        newReleaseProductAdapter = new NewReleaseProductAdapter(getContext(), new ArrayList<ProductModel>());
+        recommendedProductAdapter = new RecommendedProductAdapter(getContext(),new ArrayList<ProductModel>());
+        topRatedProductAdapter = new TopRatedProductAdapter(getContext(),new ArrayList<ProductModel>());
 
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-        linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
-
-        recyclerView.setLayoutManager(linearLayoutManager);
-        recyclerViewRecommended.setLayoutManager(linearLayoutManager);
-        recyclerViewTopRated.setLayoutManager(linearLayoutManager);
+        recyclerView.setLayoutManager(getLayoutManager());
+        recyclerViewRecommended.setLayoutManager(getLayoutManager());
+        recyclerViewTopRated.setLayoutManager(getLayoutManager());
 
         recyclerView.setAdapter(newReleaseProductAdapter);
         recyclerViewRecommended.setAdapter(recommendedProductAdapter);
         recyclerViewTopRated.setAdapter(topRatedProductAdapter);
 
+        getProductModel();
+
         return view;
     }
 
-    public List<ProductModel> getProductModel() {
+    private RecyclerView.LayoutManager getLayoutManager() {
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        return linearLayoutManager;
+    }
 
-        List<ProductModel> productModels = new ArrayList<ProductModel>();
-
-        productModels.add(new ProductModel("1", "Product One", "Product Details", "120 taka", "Image", "Green", "available"));
-        productModels.add(new ProductModel("2", "Product One", "Product Details", "120 taka", "Image", "Green", "available"));
-        productModels.add(new ProductModel("3", "Product One", "Product Details", "120 taka", "Image", "Green", "available"));
-        productModels.add(new ProductModel("4", "Product One", "Product Details", "120 taka", "Image", "Green", "available"));
-        productModels.add(new ProductModel("5", "Product One", "Product Details", "120 taka", "Image", "Green", "available"));
-        productModels.add(new ProductModel("6", "Product One", "Product Details", "120 taka", "Image", "Green", "available"));
-
-        return productModels;
+    public void getProductModel() {
+        new FirebaseDatabaseManager(getContext()).getAllProducts(new FirebaseDatabaseManagerInterface() {
+            @Override
+            public void getAllProducts(List<ProductModel> allProducts) {
+                newReleaseProductAdapter.setProductModels(allProducts);
+                recommendedProductAdapter.setProductModels(allProducts);
+                topRatedProductAdapter.setProductModels(allProducts);
+            }
+        });
 
     }
 }
